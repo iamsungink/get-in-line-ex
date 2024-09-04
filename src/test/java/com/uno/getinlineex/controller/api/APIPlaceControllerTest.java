@@ -1,9 +1,9 @@
 package com.uno.getinlineex.controller.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.uno.getinline.constant.ErrorCode;
-import com.uno.getinline.constant.PlaceType;
-import com.uno.getinline.dto.PlaceRequest;
+import com.uno.getinlineex.constant.ErrorCode;
+import com.uno.getinlineex.constant.PlaceType;
+import com.uno.getinlineex.dto.PlaceRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
