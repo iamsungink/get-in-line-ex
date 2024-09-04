@@ -1,11 +1,9 @@
 package com.uno.getinlineex.controller.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.uno.getinlineex.constant.ErrorCode;
-import com.uno.getinlineex.constant.PlaceType;
-import com.uno.getinlineex.dto.PlaceRequest;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import com.uno.getinline.constant.ErrorCode;
+import com.uno.getinline.constant.PlaceType;
+import com.uno.getinline.dto.PlaceRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -26,18 +23,10 @@ class APIPlaceControllerTest {
     public APIPlaceControllerTest(
             @Autowired MockMvc mvc,
             @Autowired ObjectMapper mapper
-    ) {
+            ) {
         this.mvc = mvc;
         this.mapper = mapper;
     }
-
-//    @BeforeEach
-//    void setUp() {
-//    }
-//
-//    @AfterEach
-//    void tearDown() {
-//    }
 
     @DisplayName("[API][GET] 장소 리스트 조회 - 장소 리스트 데이터를 담은 표준 API 출력")
     @Test
@@ -75,10 +64,10 @@ class APIPlaceControllerTest {
 
         // When & Then
         mvc.perform(
-                        post("/api/places")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(mapper.writeValueAsString(placeRequest))
-                )
+                post("/api/places")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(placeRequest))
+        )
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.success").value(true))
@@ -140,10 +129,10 @@ class APIPlaceControllerTest {
 
         // When & Then
         mvc.perform(
-                        put("/api/places/" + placeId)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(mapper.writeValueAsString(placeRequest))
-                )
+                put("/api/places/" + placeId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(placeRequest))
+        )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.success").value(true))
@@ -165,8 +154,5 @@ class APIPlaceControllerTest {
                 .andExpect(jsonPath("$.errorCode").value(ErrorCode.OK.getCode()))
                 .andExpect(jsonPath("$.message").value(ErrorCode.OK.getMessage()));
     }
-
-
-
 
 }
